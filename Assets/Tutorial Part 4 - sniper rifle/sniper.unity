@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 35310864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1945277283}
   m_RootOrder: 2
@@ -457,28 +457,15 @@ GameObject:
   - component: {fileID: 1907789734}
   - component: {fileID: 1907789733}
   - component: {fileID: 1907789732}
-  - component: {fileID: 1907789731}
+  - component: {fileID: 1907789735}
+  - component: {fileID: 1907789736}
   m_Layer: 0
-  m_Name: Sniper
+  m_Name: Sniper character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1907789731
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907789730}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1907789732
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -539,6 +526,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907789735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907789730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445a193a9489a314fafafc22e0537c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTrans: {fileID: 188266317}
+  useSlowSensitivity: 0
+--- !u!114 &1907789736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907789730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa78bb36d8605da4db3ff8bd2e79f778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sniperBullet: {fileID: 4274701299776518559, guid: 32108f726a548c046bd76ca8ddf31c90,
+    type: 3}
 --- !u!1 &1945277282
 GameObject:
   m_ObjectHideFlags: 0

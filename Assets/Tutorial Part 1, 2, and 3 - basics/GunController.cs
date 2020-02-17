@@ -11,14 +11,7 @@ public class GunController : MonoBehaviour
     //The barrel
     public Transform barrelObj;
 
-    //The bullet's initial speed [m/s]
-    //Sniper rifle bullet
-    //public static float bulletStartSpeed = 850f;
-    //Test bullet
-    public static float bulletStartSpeed = 10f;
-
-    //Wind [m/s]
-    public static Vector3 windSpeedVector = new Vector3(0f, 0f, 0f);
+    private BulletData bulletData;
 
     //The step size
     private float timeStep;
@@ -36,6 +29,8 @@ public class GunController : MonoBehaviour
         timeStep = Time.fixedDeltaTime * 1f;
 
         lineRenderer = GetComponent<LineRenderer>();
+
+        bulletData = barrelObj.GetComponent<FireBullets>().bulletObj.GetComponent<BulletData>();
     }
 
 
@@ -90,7 +85,7 @@ public class GunController : MonoBehaviour
     void CalculateAngleToHitTarget(out float? theta1, out float? theta2)
     {
         //Initial speed
-        float v = bulletStartSpeed;
+        float v = bulletData.muzzleVelocity;
 
         Vector3 targetVec = targetObj.position - barrelObj.position;
 
@@ -138,7 +133,7 @@ public class GunController : MonoBehaviour
     void DrawTrajectoryPath()
     {
         //Start values
-        Vector3 currentVel = barrelObj.transform.forward * bulletStartSpeed;
+        Vector3 currentVel = barrelObj.transform.forward * bulletData.muzzleVelocity;
         Vector3 currentPos = barrelObj.transform.position;
 
         Vector3 newPos = Vector3.zero;

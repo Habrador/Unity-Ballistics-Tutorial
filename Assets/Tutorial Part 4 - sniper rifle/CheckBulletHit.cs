@@ -34,9 +34,12 @@ public class CheckBulletHit : MonoBehaviour
             if (hit.collider.CompareTag("Target"))
             {
                 Debug.Log("Hit target!");
-                
-                //Deactivate the script that moves the bullet
 
+                //Move the bullet to where we hit
+                transform.position = hit.point;
+
+                //Deactivate the script that moves the bullet
+                GetComponent<MoveBullet>().enabled = false;
             }
         }
     }

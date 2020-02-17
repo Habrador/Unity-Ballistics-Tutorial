@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 114926313403434866}
   - component: {fileID: 114640963174897864}
   - component: {fileID: 114875217666227832}
+  - component: {fileID: 114275212102551320}
   m_Layer: 0
   m_Name: Bullet sniper
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d18980edc27be8845950b679291f827a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,3 +117,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b41df99becfc14aad324db6488c0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114275212102551320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274701299776518559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970cff6ad736f744eac729ff3b4fe529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzleVelocity: 50
+  m: 0.2
+  r: 0.05
+  C_d: 0.5
+  C_l: 0.1
+  windSpeedVector: {x: 0, y: 0, z: 0}
+  rho: 1.225

@@ -9,11 +9,15 @@ public class FireBullets : MonoBehaviour
     public GameObject bulletObj;
     //We will parent all bullets to this object to get a clean workspace
     public Transform bulletsParent;
+    //Bullet data
+    BulletData bulletData;
 
 
 
     void Start()
     {
+        bulletData = bulletObj.GetComponent<BulletData>();
+
         StartCoroutine(FireBullet());
     }
 
@@ -31,13 +35,13 @@ public class FireBullets : MonoBehaviour
             newBullet.transform.parent = bulletsParent;
 
             //The start speed vector
-            Vector3 startSpeedVec = GunController.bulletStartSpeed * transform.forward;
+            //Vector3 startSpeedVec = bulletData.muzzleVelocity * transform.forward;
 
             //Add velocity to the bullet with a rigidbody
             //newBullet.GetComponent<Rigidbody>().velocity = startSpeedVec;
 
             //Add start values to the bullet that has no rigidbody
-            newBullet.GetComponent<MoveBullet>().SetStartValues(transform.position, startSpeedVec);
+            newBullet.GetComponent<MoveBullet>().SetStartValues(transform.position, transform.forward);
 
             //Wait 2 seconds until we fire another bullet
             yield return new WaitForSeconds(2f);

@@ -49,15 +49,15 @@ public static class IntegrationMethods
     //Integration method 3
     //upVec is a vector perpendicular (in the upwards direction) to the direction the bullet is travelling in
     //is only needed if we calculate the lift force
-    public static void Heuns(float timeStep, Vector3 currentPos, Vector3 currentVel, Vector3 upVec, out Vector3 newPos, out Vector3 newVel)
+    public static void Heuns(float timeStep, Vector3 currentPos, Vector3 currentVel, Vector3 upVec, BulletData bulletData, out Vector3 newPos, out Vector3 newVel)
     {
         //Add all factors that affects the acceleration
         //Gravity
         Vector3 accFactorEuler = gravityVec;
         //Drag
-        accFactorEuler += BulletPhysics.CalculateBulletDragAcc(currentVel, GunController.windSpeedVector);
+        accFactorEuler += BulletPhysics.CalculateBulletDragAcc(currentVel, bulletData);
         //Lift 
-        accFactorEuler += BulletPhysics.CalculateBulletLiftAcc(currentVel, GunController.windSpeedVector, upVec);
+        accFactorEuler += BulletPhysics.CalculateBulletLiftAcc(currentVel, bulletData, upVec);
 
 
         //Calculate the new velocity and position
@@ -77,9 +77,9 @@ public static class IntegrationMethods
         Vector3 accFactorHeuns = gravityVec;
         //Drag
         //This assumes that windspeed is constant between the steps, which it should be because wind doesnt change that often
-        accFactorHeuns += BulletPhysics.CalculateBulletDragAcc(newVelEuler, GunController.windSpeedVector);
+        accFactorHeuns += BulletPhysics.CalculateBulletDragAcc(newVelEuler, bulletData);
         //Lift 
-        accFactorHeuns += BulletPhysics.CalculateBulletLiftAcc(newVelEuler, GunController.windSpeedVector, upVec);
+        accFactorHeuns += BulletPhysics.CalculateBulletLiftAcc(newVelEuler, bulletData, upVec);
 
         newVel = currentVel + timeStep * 0.5f * (accFactorEuler + accFactorHeuns);
 

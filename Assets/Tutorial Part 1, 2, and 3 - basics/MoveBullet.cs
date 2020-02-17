@@ -11,11 +11,14 @@ public class MoveBullet : MonoBehaviour
     private Vector3 newPos;
     private Vector3 newVel;
 
+    private BulletData bulletData;
 
 
     void Awake()
     {
         currentPos = transform.position;
+
+        bulletData = GetComponent<BulletData>();
     }
 
 
@@ -32,7 +35,7 @@ public class MoveBullet : MonoBehaviour
         //Use an integration method to calculate the new position of the bullet
         float timeStep = Time.fixedDeltaTime;
         
-        IntegrationMethods.Heuns(timeStep, currentPos, currentVel, transform.up, out newPos, out newVel);
+        IntegrationMethods.Heuns(timeStep, currentPos, currentVel, transform.up, bulletData, out newPos, out newVel);
 
         //Debug.DrawRay(transform.position, transform.up * 5f);
 
@@ -50,9 +53,12 @@ public class MoveBullet : MonoBehaviour
 
 
     //Set start values when we create the bullet
-    public void SetStartValues(Vector3 startPos, Vector3 startVel)
+    public void SetStartValues(Vector3 startPos, Vector3 startDir)
     {
         this.currentPos = startPos;
-        this.currentVel = startVel;
+        this.currentVel = bulletData.muzzleVelocity * startDir;
+
+        transform.position = startPos;
+        transform.forward = startDir;
     }
 }
