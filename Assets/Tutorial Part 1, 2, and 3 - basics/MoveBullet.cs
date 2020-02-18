@@ -14,10 +14,9 @@ public class MoveBullet : MonoBehaviour
     private BulletData bulletData;
 
 
+
     void Awake()
     {
-        currentPos = transform.position;
-
         bulletData = GetComponent<BulletData>();
     }
 

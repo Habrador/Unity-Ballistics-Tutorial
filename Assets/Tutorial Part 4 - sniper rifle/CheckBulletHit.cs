@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Wll check if the bullet hit anything since last update
+//Will check if the bullet hit anything since last update
 public class CheckBulletHit : MonoBehaviour
 {
     private Vector3 lastPos;
@@ -38,7 +38,7 @@ public class CheckBulletHit : MonoBehaviour
                 //Move the bullet to where we hit
                 transform.position = hit.point;
 
-                //Deactivate the script that moves the bullet
+                //Deactivate the script that moves the bullet, so we can see where it hit
                 GetComponent<MoveBullet>().enabled = false;
             }
         }

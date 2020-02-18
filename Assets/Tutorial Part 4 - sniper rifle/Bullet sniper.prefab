@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4274701299776518559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.149446, y: -6.014309, z: -7.846713}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970cff6ad736f744eac729ff3b4fe529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleVelocity: 50
+  muzzleVelocity: 200
   m: 0.2
   r: 0.05
   C_d: 0.5
-  C_l: 0.1
-  windSpeedVector: {x: 0, y: 0, z: 0}
+  C_l: 0.01
+  windSpeedVector: {x: 2, y: 0, z: 0}
   rho: 1.225

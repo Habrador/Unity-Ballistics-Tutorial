@@ -67,12 +67,13 @@ public static class IntegrationMethods
         //Step 1. Find new pos and new vel with Forward Euler
         Vector3 newVelEuler = currentVel + timeStep * accFactorEuler;
 
-        //New position with Forward Euler is not needed
+        //New position with Forward Euler (is not needed here)
         //Vector3 newPosEuler = currentPos + timeStep * currentVel;
+
 
         //Step 2. Heuns method's final step
         //If we take drag into account, then acceleration is not constant - it also depends on the velocity
-        //So we have to calculate another acceleration term
+        //So we have to calculate another acceleration factor
         //Gravity
         Vector3 accFactorHeuns = gravityVec;
         //Drag
@@ -105,7 +106,7 @@ public static class IntegrationMethods
         //Step 1. Find new pos and new vel with Forward Euler
         Vector3 newVelEuler = currentVel + timeStep * accFactor;
 
-        //New position with Forward Euler is not needed
+        //New position with Forward Euler (is not needed)
         //Vector3 newPosEuler = currentPos + timeStep * currentVel;
 
         //Step 2. Heuns method's final step if acceleration is constant

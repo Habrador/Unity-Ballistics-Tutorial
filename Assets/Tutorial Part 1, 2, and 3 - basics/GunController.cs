@@ -7,10 +7,15 @@ public class GunController : MonoBehaviour
 {
     //Drags
     //The target we are aiming for
-    public Transform targetObj;
-    //The barrel
-    public Transform barrelObj;
+    public Transform targetTrans;
+    //The barrel: the part of the barrel we rotate - not the barrel mesh
+    public Transform barrelTrans;
+    //The end of the cannon barrel where we will create the bullets
+    //If we create them at the bottom they will cut through the barrel because we are not simulating
+    //the bullets first travelling straight along the barrel
+    public Transform endOfBarrelTrans;
 
+    //Data belonging to the bullet we fire
     private BulletData bulletData;
 
     //The step size
@@ -23,14 +28,14 @@ public class GunController : MonoBehaviour
 
     void Awake()
     {
-        //Can use a less precise h to speed up calculations
+        //Can use a less precise time step to speed up calculations
         //Or a more precise to get a more accurate result
-        //BUT lower is not always better because of floating point precision issues
+        //BUT lower is not always better because of floating point precision issues!!!
         timeStep = Time.fixedDeltaTime * 1f;
 
         lineRenderer = GetComponent<LineRenderer>();
 
-        bulletData = barrelObj.GetComponent<FireBullets>().bulletObj.GetComponent<BulletData>();
+        bulletData = barrelTrans.GetComponent<FireBullets>().bulletObj.GetComponent<BulletData>();
     }
 
 
@@ -67,10 +72,10 @@ public class GunController : MonoBehaviour
             //The equation we use assumes that if we are rotating the gun up from the
             //pointing "forward" position, the angle increase from 0, but our gun's angles
             //decreases from 360 degress when we are rotating up
-            barrelObj.localEulerAngles = new Vector3(360f - angle, 0f, 0f);
+            barrelTrans.localEulerAngles = new Vector3(360f - angle, 0f, 0f);
 
             //Rotate the gun turret towards the target
-            transform.LookAt(targetObj);
+            transform.LookAt(targetTrans);
             transform.eulerAngles = new Vector3(0f, transform.rotation.eulerAngles.y, 0f);
         }
     }
@@ -87,7 +92,7 @@ public class GunController : MonoBehaviour
         //Initial speed
         float v = bulletData.muzzleVelocity;
 
-        Vector3 targetVec = targetObj.position - barrelObj.position;
+        Vector3 targetVec = targetTrans.position - endOfBarrelTrans.position;
 
         //Vertical distance
         float y = targetVec.y;
@@ -133,8 +138,8 @@ public class GunController : MonoBehaviour
     void DrawTrajectoryPath()
     {
         //Start values
-        Vector3 currentVel = barrelObj.transform.forward * bulletData.muzzleVelocity;
-        Vector3 currentPos = barrelObj.transform.position;
+        Vector3 currentVel = barrelTrans.forward * bulletData.muzzleVelocity;
+        Vector3 currentPos = endOfBarrelTrans.position;
 
         Vector3 newPos = Vector3.zero;
         Vector3 newVel = Vector3.zero;
@@ -162,8 +167,8 @@ public class GunController : MonoBehaviour
             bulletPositions.Add(currentPos);
 
             //The bullet has hit the ground because we assume 0 is ground height
-            //This assumes the bullet is fired from a position above 0 or the algorithm will stop immediately
-            if (currentPos.y < -0f)
+            //This assumes the bullet is fired from a position above 0 or the loop will stop immediately
+            if (currentPos.y < 0f)
             {
                 break;
             }

@@ -350,6 +350,36 @@ Transform:
   m_Father: {fileID: 1250883776}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &664141750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664141751}
+  m_Layer: 0
+  m_Name: Barrel end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664141751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664141750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2024181969}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &710001051
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +534,7 @@ MonoBehaviour:
   bulletObj: {fileID: 4274701299776518559, guid: 19883b92c891c594b974faff19f732f5,
     type: 3}
   bulletsParent: {fileID: 1113622328}
+  endOfBarrelTrans: {fileID: 664141751}
 --- !u!1 &1250883775
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,8 +713,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746cd6b5a1dc32b49b840e2cd7ff11e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 710001055}
-  barrelObj: {fileID: 1210090727}
+  targetTrans: {fileID: 710001055}
+  barrelTrans: {fileID: 1210090727}
+  endOfBarrelTrans: {fileID: 664141751}
 --- !u!120 &1725943170
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -861,7 +893,8 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: -0, z: 1.03}
   m_LocalScale: {x: 0.3, y: 1, z: 0.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 664141751}
   m_Father: {fileID: 1210090727}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

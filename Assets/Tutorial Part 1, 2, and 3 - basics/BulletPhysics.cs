@@ -12,7 +12,7 @@ public static class BulletPhysics
         //https://www.youtube.com/watch?v=lGg7wNf1w-k
         Vector3 bulletVelRelativeToWindVel = bulletVel - bulletData.windSpeedVector;
     
-        //Step 1. Calculate the bullet's drag force
+        //Step 1. Calculate the bullet's drag force [N]
         //https://en.wikipedia.org/wiki/Drag_equation
         //F_drag = 0.5 * rho * v^2 * C_d * A 
 
@@ -21,15 +21,16 @@ public static class BulletPhysics
         //The bullet's cross section area [m^2]
         float A = Mathf.PI * bulletData.r * bulletData.r;
         
-        float F_drag = 0.5f * bulletData.rho * v * v * bulletData.C_d * A;
+        float dragForce = 0.5f * bulletData.rho * v * v * bulletData.C_d * A;
 
 
-        //Step 2. We need to add an acceleration, not a force, in the integration method
+        //Step 2. We need to add an acceleration, not a force, in the integration method [m/s^2]
         //Drag acceleration F = m * a -> a = F / m
-        float a_drag = F_drag / bulletData.m;
+        float dragAcc = dragForce / bulletData.m;
 
-        //Has to be in a direction opposite of the bullet's velocity vector
-        Vector3 dragVec = a_drag * bulletVelRelativeToWindVel.normalized * -1f;
+        //SHould be in a direction opposite of the bullet's velocity vector
+        Vector3 dragVec = dragAcc * bulletVelRelativeToWindVel.normalized * -1f;
+
 
         return dragVec;
     }
@@ -37,13 +38,13 @@ public static class BulletPhysics
 
 
     //Calculate the bullet's lift acceleration
-    public static Vector3 CalculateBulletLiftAcc(Vector3 bulletVel, BulletData bulletData, Vector3 upDir)
+    public static Vector3 CalculateBulletLiftAcc(Vector3 bulletVel, BulletData bulletData, Vector3 bulletUpDir)
     {
         //If you have a wind speed in your game, you can take that into account here:
         //https://www.youtube.com/watch?v=lGg7wNf1w-k
         Vector3 bulletVelRelativeToWindVel = bulletVel - bulletData.windSpeedVector;
 
-        //Step 1. Calculate the bullet's lift force
+        //Step 1. Calculate the bullet's lift force [N]
         //https://en.wikipedia.org/wiki/Lift_(force)
         //F_lift = 0.5 * rho * v^2 * S * C_l 
 
@@ -52,15 +53,15 @@ public static class BulletPhysics
         //Planform (projected) wing area, which is assumed to be the same as the cross section area [m^2]
         float S = Mathf.PI * bulletData.r * bulletData.r;
 
-        float F_lift = 0.5f * bulletData.rho * v * v * S * bulletData.C_l;
+        float liftForce = 0.5f * bulletData.rho * v * v * S * bulletData.C_l;
 
-        //Step 2. We need to add an acceleration, not a force, in the integration method
+        //Step 2. We need to add an acceleration, not a force, in the integration method [m/s^2]
         //Drag acceleration F = m * a -> a = F / m
-        float a_lift = F_lift / bulletData.m;
+        float liftAcc = liftForce / bulletData.m;
 
         //The lift force acts in the up-direction = perpendicular to the velocity direction it travels in
-        //Vector3 liftVec = a_lift * upDir;
-        Vector3 liftVec = a_lift * Vector3.up;
+        Vector3 liftVec = liftAcc * bulletUpDir;
+
 
         return liftVec;
     }

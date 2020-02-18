@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Will just move the head of a character and turn the body around
+//Will just move the sniper character (who cant walk just turn around and aim up/down)
 public class BodyController : MonoBehaviour
 {
     //The camera should be a child to this gameobject
@@ -13,6 +13,7 @@ public class BodyController : MonoBehaviour
     private float xCameraRotation;
 
     //Parameters
+    //If we zoom in with the sniper rifle we should move slower to make it easier to aim
     private float mouseSensitivity = 100f;
 
     private float mouseSensitivitySlow = 10f;
