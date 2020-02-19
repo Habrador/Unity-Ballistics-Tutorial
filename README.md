@@ -4,7 +4,7 @@ Tutorial on how to make realistic bullets in Unity
 
 YouTube video showing the result:
 
-[![Bullet physics in Unity video](http://img.youtube.com/vi/eA60HDTnfnQ/0.jpg)](http://www.youtube.com/watch?eA60HDTnfnQ "Bullet physics in Unity video")
+[![Bullet physics in Unity video](http://img.youtube.com/vi/eA60HDTnfnQ/0.jpg)](http://www.youtube.com/watch?v=eA60HDTnfnQ "Bullet physics in Unity video")
 
 Link to the tutorial: https://www.habrador.com/tutorials/unity-realistic-bullets/
 
