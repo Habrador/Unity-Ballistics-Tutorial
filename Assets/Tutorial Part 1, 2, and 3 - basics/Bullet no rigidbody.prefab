@@ -116,10 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970cff6ad736f744eac729ff3b4fe529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleVelocity: 20
+  muzzleVelocity: 10
   m: 0.2
   r: 0.05
   C_d: 0.5
-  C_l: 0.5
-  windSpeedVector: {x: 0, y: 0, z: 0}
+  C_l: 0.1
+  windSpeedVector: {x: 3, y: 0, z: 0}
   rho: 1.225
